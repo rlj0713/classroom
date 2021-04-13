@@ -2,6 +2,9 @@ require './config/environment'
 
 class SectionController < ApplicationController
 
+  get "/sections/:id" do
+    erb :sections
+  end
   # index
   # get "#{current_user}/sections" do
   #   @sections = Section.all
