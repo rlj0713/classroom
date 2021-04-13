@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
 
 		# Returns false if the user already exists in the db.
 		def is_unique
-			!User.all.includes(params[:username])
+			!User.all.includes(params[:username]) || User.all == []
 		end
 	end
 
