@@ -3,7 +3,11 @@ require './config/environment'
 class UsersController < ApplicationController
 	# show
 	get "/user/:users_id/sections/:id" do
-		erb :sections
+		if logged_in?
+			erb :sections
+		else
+			redirect "/login"
+		end
 	end
 
 	post "/user" do

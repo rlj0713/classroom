@@ -10,12 +10,14 @@ class SessionsController < ApplicationController
 
 	post "/signup" do
 		user = User.new(:username => params[:username], :password => params[:password])
-		
-		if is_valid
+
+		if is_unique || is_first_user
 			user.save
-			redirect "/login"
+			session[:user_id] = user.id
+			redirect "/user"
 		else
-			redirect "/failure"
+			@reason = "a username that is not unique."
+			erb :failure
 		end
 	end
 	
@@ -30,7 +32,8 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			redirect "/user"
 		else
-			redirect "/failure"
+			@reason = "an incorrect password."
+			erb :failure
 		end
 	end
 
