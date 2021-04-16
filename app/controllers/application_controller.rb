@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
   	end
 
   	get "/" do
-    	erb :index
+    	erb :welcome
   	end
 
 	helpers do
@@ -21,9 +21,13 @@ class ApplicationController < Sinatra::Base
 			User.find(session[:user_id])
 		end
 
-		# Returns false if the user already exists in the db.
-		def is_unique
+		# Returns true if the user doesn't already exists in the db. - For Sign-Up redundancy problem
+		def is_valid
 			!User.all.includes(params[:username]) || User.all == []
+		end
+
+		#I need to eliminate the chance that a user creates 2 sections with the same name
+		def section_already_exists
 		end
 	end
 
