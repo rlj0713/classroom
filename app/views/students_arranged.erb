@@ -1,5 +1,4 @@
-<p> Hello World </p>
-<p>This is group number <%= @selected_section %></p>
+<h1>Section <%= @selected_section %> Groups:</h1>
 
 <% @all = Student.all %>
 <% current_section_of_students = [] %>
@@ -11,8 +10,8 @@
 
 
 <% number_of_students = current_section_of_students.length %>
-<p>Total Number of Students: <%= number_of_students %><p><br>
-<p> Projected Number of Groups: <%= number_of_groups = number_of_students / 4 %></p>
+<% number_of_students %>
+<% number_of_groups = number_of_students / 4 %>
 
 <% high = []  %>
 <% m_high = []  %>
@@ -36,33 +35,20 @@
     <% counter += 1 %>
 <% end %>
 
-<p>High Group:<p>
-<% high.each do |student| %>
-<%= student[:name] %><br>
-<% end %>
-
-<p>Medium-High Group:<p>
-<% m_high.each do |student| %>
-<%= student[:name] %><br>
-<% end %>
-
-<p>Medium-Low Group:<p>
-<% m_low.each do |student| %>
-<%= student[:name] %><br>
-<% end %>
-
-<p>Low Group:<p>
-<% low.each do |student| %>
-<%= student[:name] %><br>
-<% end %><br><br>
-
 <% @counter = 1 %>
 
 <% while @counter < number_of_groups %>
-    <h2>Group <%= @counter %>:</h2> <br>
+    <h2>Group <%= @counter %>:</h2>
     <%= high.pop[:name] %><br>
     <%= m_high.pop[:name] %><br>
     <%= m_low.pop[:name] %><br>
     <%= low.pop[:name] %><br>
     <% @counter += 1 %>
+<% end %>
+
+<% final_group = [high, m_high, m_low, low] %>
+<% final_group = final_group.flatten %>
+<h2>Group <%= number_of_groups %>:</h2>
+<% final_group.each do |student| %>
+<%= student[:name] %><br>
 <% end %>
