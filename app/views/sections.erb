@@ -1,11 +1,18 @@
-<h1>This is Section <%= params[:id].to_i %></h1>
+<h1> You are <%= current_user[:username] %></h1> </h1>
+<h1>This is Section <%=params[:section]%></h1>
+
+<%# Things selected on user's main page %>
+<% @section = params[:section] %> <%# This is a string btw %>
+<% @section_id = params[:id] %>      <%# This is also a string %>
+
+
 
 <h2>Students:</h2>
 
 <% @all = Student.all %>
 <% array_of_students = [] %>
 <% @all.each do |student| %>
-    <% if student[:section] == params[:id].to_i %>
+    <% if student[:section] == @selected_section.to_i %>
         <% array_of_students << student %>
     <% end %>
 <% end %>
@@ -21,12 +28,13 @@
 </form>
 
 
-<%# This form isn't adding people to sections properly %>
+<%# This form isn't adding people to sections properly multiple variables in dynamic route?%>
 
 <form action="/students" method="POST">
 	<input id="name" type="text" name="name" placeholder="Student Name">
-	<input id="section" type="hidden" name="section" value="<%= params[:id] %>">
+	<input id="section" type="hidden" name="section" value="<%=@section_id.to_i%>">
 	<input id="score" type="integer" name="score" placeholder="Student Score">
+	<input id="user_id" type="hidden" name="user_id" value="<%=current_user[:id]%>">
 	<input type="submit" value="Add Student">
 </form>
 

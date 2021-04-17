@@ -9,3 +9,4 @@ run ApplicationController
 use SessionsController
 use UsersController
 use StudentsController
+use NavbarController

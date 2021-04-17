@@ -18,16 +18,16 @@ class StudentsController < ApplicationController
 #   erb :sections
 # end
 
-get "/:id/sections" do
-  if logged_in?
-    erb :'sections'
-  else
-    redirect "/login"
-  end
+# get "/:id/sections" do
+#   if logged_in?
+#     erb :'sections'
+#   else
+#     redirect "/login"
+#   end
 
-  # Section.new(:name => "1st Period", :user_id => ["1234"])
-  # @sections = Section.all
-end
+# end
+# Section.new(:name => "1st Period", :user_id => ["1234"])
+# @sections = Section.all
 
 get '/students' do
   if logged_in?
@@ -46,10 +46,10 @@ post "/students" do
   end
 
   if @student.name == "John Doe"
-    redirect "/user"
+    redirect "/:username"
   else
     @new_students_section = params[:section]
-    redirect "/user/#{current_user[:id]}/sections/#{@new_students_section.to_i}"
+    redirect "/sections/#{@new_students_section.to_i}"
   end
 end
 
@@ -57,7 +57,7 @@ get '/students_arranged' do
   erb :students_arranged
 end
 
-post 'sections' do
+post '/sections' do
   if logged_in?
     erb :sections
   else

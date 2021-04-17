@@ -11,7 +11,7 @@
 <% @all = Student.all %>
 <% array_of_sections = [] %>
 <% @all.each do |section| %>
-	<% if !array_of_sections.include?(section[:section]) && section[:user_id] == current_user.id %>
+	<% if !array_of_sections.include?(section[:section]) %>
 		<% array_of_sections << section[:section] %>
 	<% end %>
 <% end %>
@@ -19,12 +19,16 @@
 <% array_of_sections = array_of_sections.sort %>
 
 <% array_of_sections.each do |section| %>
-	<a href="/user/<%=current_user[:id]%>/sections/<%=section%>"> Section: <%= section %></a> </ul>
-	<br><br>
+	<form action="/sections/<%=section%>" method="POST">
+		<input id="user_id" type="hidden" name="user_id" value="<%=current_user[:id]%>">
+		<input id="section" type="hidden" name="section" value="<%=section%>">
+		<input type="submit" value="Section: <%=section%>">
+	</form>
+	<br>
 <% end %>
 
 
-<form action="/students" method="POST">
+<form action="/sections" method="POST">
 	<input id="section" type="integer" name="section" placeholder="Student Section">
 	<input id="name" type="hidden" name="name" value="John Doe">
 	<input id="score" type="hidden" name="score" value="100">

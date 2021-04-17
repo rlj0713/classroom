@@ -10,6 +10,7 @@ gem "capybara"
 gem "pry"
 gem 'sqlite3', '~> 1.3.6'
 gem 'shotgun'
+gem 'materialize-sass', '~> 1.0.0'
 
 group :test do
   gem 'rspec'

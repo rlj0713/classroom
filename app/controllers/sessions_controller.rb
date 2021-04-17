@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 		if is_unique || is_first_user
 			user.save
 			session[:user_id] = user.id
-			redirect "/user"
+			redirect "/sections"
 		else
 			@reason = "a username that is not unique."
 			erb :failure
@@ -30,18 +30,10 @@ class SessionsController < ApplicationController
 
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
-			redirect "/user"
+			redirect "/sections"
 		else
 			@reason = "an incorrect password."
 			erb :failure
-		end
-	end
-
-	get "/user" do
-		if logged_in?
-			erb :user
-		else
-			redirect "/login"
 		end
 	end
 
@@ -51,7 +43,7 @@ class SessionsController < ApplicationController
 
 	get "/logout" do
 		session.clear
-		redirect "/"
+		erb :welcome
 	end
 
 end
