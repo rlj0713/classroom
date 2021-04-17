@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/rlj0713/Development/phase2/classroom/app/controllers/students_controller.rb:38 self.POST /students_arranged:
+
+    [1;34m33[0m: get [31m[1;31m'[0m[31m/students_arranged[1;31m'[0m[31m[0m [32mdo[0m
+    [1;34m34[0m:   erb [33m:students_arranged[0m
+    [1;34m35[0m: [32mend[0m
+    [1;34m36[0m: 
+    [1;34m37[0m: post [31m[1;31m'[0m[31m/students_arranged[1;31m'[0m[31m[0m [32mdo[0m
+ => [1;34m38[0m:   binding.pry
+    [1;34m39[0m:   @selected_section = params[[33m:section[0m]
+    [1;34m40[0m: [32mend[0m
+    [1;34m41[0m: 
+    [1;34m42[0m: post [31m[1;31m'[0m[31m/sections[1;31m'[0m[31m[0m [32mdo[0m
+    [1;34m43[0m:   [32mif[0m logged_in?
+

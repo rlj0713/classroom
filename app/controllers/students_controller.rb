@@ -7,28 +7,6 @@ class StudentsController < ApplicationController
 # Add and update students from a form.
 # May need an edit to facilitate delete?
 
-
-# Students where user_id == current_user[:user_id]
-
-
- # index
-#  get "/sections" do
-#   binding.pry
-#   @sections = Section.find_by(session[:user_id])
-#   erb :sections
-# end
-
-# get "/:id/sections" do
-#   if logged_in?
-#     erb :'sections'
-#   else
-#     redirect "/login"
-#   end
-
-# end
-# Section.new(:name => "1st Period", :user_id => ["1234"])
-# @sections = Section.all
-
 get '/students' do
   if logged_in?
     erb :sections
@@ -37,7 +15,6 @@ get '/students' do
   end
 end
 
-# create
 post "/students" do
   @student = Student.create(:user_id => current_user[:id], :name => params[:name], :section => params[:section].to_i, :score => params[:score])
   
@@ -53,7 +30,13 @@ post "/students" do
   end
 end
 
-get '/students_arranged' do
+get '/sections/:id/students_arranged' do
+  erb :students_arranged
+end
+
+# Post vs get?? Student Section is not persisting when create groups is called.
+post '/sections/:id/students_arranged' do
+  @selected_section = params[:id]
   erb :students_arranged
 end
 

@@ -1,3 +1,59 @@
 <p> Hello World </p>
+<p>This is group number <%= @selected_section %></p>
+
+<% @all = Student.all %>
+<% current_section_of_students = [] %>
+<% @all.each do |student| %>
+    <% if student[:section] == @selected_section.to_i %>
+        <% current_section_of_students << student %>
+    <% end %>
+<% end %>
 
 
+<% number_of_students = current_section_of_students.length %>
+<p>Total Number of Students: <%= number_of_students %><p><br>
+<p> Projected Number of Groups: <%= number_of_groups = number_of_students / 4 %></p>
+
+<% high = []  %>
+<% m_high = []  %>
+<% m_low = []  %>
+<% low = []  %>
+<% counter = 0  %>
+
+
+
+
+<% current_section_of_students = current_section_of_students.sort %>
+<% current_section_of_students.each do |student| %>
+<%= student[:name] %> - <%= student[:score] %><br>
+    <% if counter < number_of_groups %>
+        <% high << student %>
+    <% elsif counter < (number_of_groups * 2) && counter > number_of_groups %>
+        <% m_high << student %>
+    <% elsif counter < (number_of_groups * 3) && counter > (number_of_groups * 2) %>
+        <% m_low << student %>
+    <% elsif counter < (number_of_groups * 5) && counter > (number_of_groups * 3) %>
+        <% low << student %>
+    <% end %>
+    <% counter += 1 %>
+<% end %>
+
+<p>High Group:<p>
+<% high.each do |student| %>
+<%= student[:name] %><br>
+<% end %>
+
+<p>Medium-High Group:<p>
+<% m_high.each do |student| %>
+<%= student[:name] %><br>
+<% end %>
+
+<p>Medium-Low Group:<p>
+<% m_low.each do |student| %>
+<%= student[:name] %><br>
+<% end %>
+
+<p>Low Group:<p>
+<% low.each do |student| %>
+<%= student[:name] %><br>
+<% end %>

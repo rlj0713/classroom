@@ -22,8 +22,8 @@
 <% end %>
 
 
-<form action="/students_arranged" method="GET">
-	<input id="section" type="hidden" value="<%=params[:id].to_i%>">
+<form action="/sections/<%=@section_id%>/students_arranged" method="POST">
+	<input id="section" type="hidden" value="<%=@section_id.to_i%>">
 	<input type="submit" value="Create Groups!">
 </form>
 
