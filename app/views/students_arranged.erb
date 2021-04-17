@@ -21,11 +21,9 @@
 <% counter = 0  %>
 
 
-
-
 <% current_section_of_students = current_section_of_students.sort %>
 <% current_section_of_students.each do |student| %>
-<%= student[:name] %> - <%= student[:score] %><br>
+
     <% if counter < number_of_groups %>
         <% high << student %>
     <% elsif counter < (number_of_groups * 2) && counter > number_of_groups %>
@@ -56,4 +54,15 @@
 <p>Low Group:<p>
 <% low.each do |student| %>
 <%= student[:name] %><br>
+<% end %><br><br>
+
+<% @counter = 1 %>
+
+<% while @counter < number_of_groups %>
+    <h2>Group <%= @counter %>:</h2> <br>
+    <%= high.pop[:name] %><br>
+    <%= m_high.pop[:name] %><br>
+    <%= m_low.pop[:name] %><br>
+    <%= low.pop[:name] %><br>
+    <% @counter += 1 %>
 <% end %>
