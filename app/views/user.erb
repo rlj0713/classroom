@@ -11,7 +11,7 @@
 <% @all = Student.all %>
 <% array_of_sections = [] %>
 <% @all.each do |section| %>
-	<% if !array_of_sections.include?(section[:section]) %>
+	<% if !array_of_sections.include?(section[:section]) && session[:user_id] == section[:user_id] %>
 		<% array_of_sections << section[:section] %>
 	<% end %>
 <% end %>

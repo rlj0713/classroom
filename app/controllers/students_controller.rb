@@ -34,7 +34,6 @@ get '/sections/:id/students_arranged' do
   erb :students_arranged
 end
 
-# Post vs get?? Student Section is not persisting when create groups is called.
 post '/sections/:id/students_arranged' do
   @selected_section = params[:id]
   erb :students_arranged
@@ -75,11 +74,6 @@ end
 #   redirect to "/articles/#{ @article.id }"
 # end
 
-# #destroy
-# delete "/articles/:id" do
-#   Article.destroy(params[:id])
-#   redirect to "/articles"
-# end
 
 
 
