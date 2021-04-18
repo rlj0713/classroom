@@ -23,13 +23,13 @@
 <% current_section_of_students = current_section_of_students.sort %>
 <% current_section_of_students.each do |student| %>
 
-    <% if counter < number_of_groups %>
+    <% if counter <= number_of_groups %>
         <% high << student %>
-    <% elsif counter < (number_of_groups * 2) && counter > number_of_groups %>
+    <% elsif counter <= (number_of_groups * 2) && counter > number_of_groups %>
         <% m_high << student %>
-    <% elsif counter < (number_of_groups * 3) && counter > (number_of_groups * 2) %>
+    <% elsif counter <= (number_of_groups * 3) && counter > (number_of_groups * 2) %>
         <% m_low << student %>
-    <% elsif counter < (number_of_groups * 5) && counter > (number_of_groups * 3) %>
+    <% elsif counter <= (number_of_groups * 5) && counter > (number_of_groups * 3) %>
         <% low << student %>
     <% end %>
     <% counter += 1 %>
