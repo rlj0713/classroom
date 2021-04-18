@@ -1,18 +1,17 @@
-<h1> You are <%= current_user[:username] %></h1> </h1>
-<h1>This is Section <%=params[:section]%></h1>
-
-<%# Things selected on user's main page %>
-<% @section = params[:section] %> <%# This is a string btw %>
-<% @section_id = params[:id] %>      <%# This is also a string %>
-
-
+<h1> Welcome <%= current_user[:username] %>!</h1> </h1>
+<h1>Section <%=params[:section]%></h1>
 
 <h2>Students:</h2>
 
+<%# This displays a list of students on the page %>
+<% @section = params[:section] %>
+<% @section_id = params[:id].to_i %>
 <% @all = Student.all %>
 <% array_of_students = [] %>
+
+
 <% @all.each do |student| %>
-    <% if student[:section] == @selected_section.to_i %>
+    <% if student[:section] == @section_id && student[:user_id] == session[:user_id] %>
         <% array_of_students << student %>
     <% end %>
 <% end %>
@@ -26,14 +25,10 @@
 	</ul>
 <% end %>
 
-
 <form action="/sections/<%=@section_id%>/students_arranged" method="POST">
 	<input id="section" type="hidden" value="<%=@section_id.to_i%>">
 	<input type="submit" value="Create Groups!">
 </form>
-
-
-<%# This form isn't adding people to sections properly multiple variables in dynamic route?%>
 
 <form action="/students" method="POST">
 	<input id="name" type="text" name="name" placeholder="Student Name">

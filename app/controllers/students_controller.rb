@@ -23,7 +23,7 @@ post "/students" do
   end
 
   if @student.name == "John Doe"
-    redirect "/:username"
+    redirect "/sections"
   else
     @new_students_section = params[:section]
     redirect "/sections/#{@new_students_section.to_i}"

@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 	
 	post "/sections" do
 		@section = Student.create(:user_id => current_user[:id], :name => params[:name] = "John Doe", :section => params[:section], :score => params[:score] = 100)
-		if !Student.all.includes(@section)
+		
+		if !Student.all.includes(@section) && params[:section] != ""
 			@section.save
 		end
 		erb :user
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
 	
 	get "/sections/:id" do
 		if logged_in?
-			@user_id = params[:users_id]
+			@user_id = current_user[:id]
 			@selected_section = params[:id]
 			erb :sections
 		else

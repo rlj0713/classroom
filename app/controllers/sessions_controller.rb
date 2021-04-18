@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			redirect "/sections"
 		else
-			@reason = "an incorrect password."
+			@reason = "a password that doesn't match a user in our system."
 			erb :failure
 		end
 	end

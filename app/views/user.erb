@@ -1,35 +1,27 @@
 
-
-<h1>This should only be available if you are logged in</h1>
-
 <h2>Welcome <%= current_user.username %>! </h2>
-
-
 
 <h2>Your Sections:</h2>
 
+<%# This displays a list of sections that belong to the user %>
 <% @all = Student.all %>
 <% array_of_sections = [] %>
-<% @all.each do |section| %>
-	<% if !array_of_sections.include?(section[:section]) && session[:user_id] == section[:user_id] %>
-		<% array_of_sections << section[:section] %>
+<% @all.each do |student| %>
+	<% if !array_of_sections.include?(student[:section]) && @user_id == student[:user_id] %>
+		<% array_of_sections << student %>
 	<% end %>
 <% end %>
-
 <% array_of_sections = array_of_sections.sort %>
-
-<% array_of_sections.each do |section| %>
-	<form action="/sections/<%=section%>" method="POST">
-		<input id="user_id" type="hidden" name="user_id" value="<%=current_user[:id]%>">
-		<input id="section" type="hidden" name="section" value="<%=section%>">
-		<input type="submit" value="Section: <%=section%>">
+<% array_of_sections.each do |student| %>
+	<form action="/sections/<%=student[:section]%>" method="POST">
+		<input id="section" type="hidden" name="section" value="<%=student[:section]%>">
+		<input type="submit" value="Section: <%=student[:section]%>">
 	</form>
 	<br>
 <% end %>
 
-
 <form action="/sections" method="POST">
-	<input id="section" type="integer" name="section" placeholder="Student Section">
+	<input id="section" type="integer" name="section" placeholder="Enter a number">
 	<input id="name" type="hidden" name="name" value="John Doe">
 	<input id="score" type="hidden" name="score" value="100">
 	<input type="submit" value="Add a Section">
