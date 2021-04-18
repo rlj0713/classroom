@@ -12,43 +12,47 @@
 <% number_of_students = current_section_of_students.length %>
 <% number_of_students %>
 <% number_of_groups = number_of_students / 4 %>
+<% number_of_groups = number_of_groups.floor %>
 
 <% high = []  %>
 <% m_high = []  %>
 <% m_low = []  %>
 <% low = []  %>
-<% counter = 0  %>
+<% remainder = []  %>
+<% counter = 1  %>
 
 
-<% current_section_of_students = current_section_of_students.sort %>
+<% current_section_of_students = current_section_of_students.sort_by { |obj| obj.score } %>
 <% current_section_of_students.each do |student| %>
 
     <% if counter <= number_of_groups %>
-        <% high << student %>
-    <% elsif counter <= (number_of_groups * 2) && counter > number_of_groups %>
-        <% m_high << student %>
-    <% elsif counter <= (number_of_groups * 3) && counter > (number_of_groups * 2) %>
-        <% m_low << student %>
-    <% elsif counter <= (number_of_groups * 5) && counter > (number_of_groups * 3) %>
         <% low << student %>
+    <% elsif counter <= number_of_groups * 2 && counter > number_of_groups %>
+        <% m_low << student %>
+    <% elsif counter <= number_of_groups * 3 && counter > number_of_groups * 2 %>
+        <% m_high << student %>
+    <% elsif counter <= number_of_groups * 4 && counter > number_of_groups * 3 %>
+        <% high << student %>
+    <% elsif counter <= number_of_groups * 5 && counter > number_of_groups * 4 %>
+        <% remainder << student %>
     <% end %>
     <% counter += 1 %>
 <% end %>
 
-<% @counter = 1 %>
+<% @counter2 = 1 %>
 
-<% while @counter < number_of_groups %>
-    <h2>Group <%= @counter %>:</h2>
+<% while @counter2 <= number_of_groups %>
+    <h2>Group <%= @counter2 %>:</h2>
     <%= high.pop[:name] %><br>
     <%= m_high.pop[:name] %><br>
     <%= m_low.pop[:name] %><br>
     <%= low.pop[:name] %><br>
-    <% @counter += 1 %>
+    <% @counter2 += 1 %>
 <% end %>
 
-<% final_group = [high, m_high, m_low, low] %>
+<% final_group = remainder %>
 <% final_group = final_group.flatten %>
-<h2>Group <%= number_of_groups %>:</h2>
+<h2>Remainder Group <%= number_of_groups + 1 %>:</h2>
 <% final_group.each do |student| %>
 <%= student[:name] %><br>
 <% end %>
