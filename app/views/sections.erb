@@ -19,7 +19,8 @@
 <% array_of_students.each do |student| %>    
     <ul> <%= student[:name] %> - <%= student[:score] %>
 		<form action="/delete_student" method="POST">
-			<input id="name" type="hidden" value="<%=student%>">
+			<input id="id" name ="id" type="hidden" value="<%=student[:id]%>">
+			<input id="section" name ="section" type="hidden" value="<%=student[:section]%>">
 			<input type="submit" value="Delete Student">
 		</form>
 	</ul>

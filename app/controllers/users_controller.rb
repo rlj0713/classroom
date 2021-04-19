@@ -37,4 +37,15 @@ class UsersController < ApplicationController
 			redirect "/login"
 		end
 	end
+
+	post "/delete_student" do
+		if logged_in?
+			@selected_student = params[:id]
+			@selected_student = Student.find_by_id(@selected_student)
+			@selected_student.delete
+			redirect "/sections/#{params[:section]}"
+		else
+			redirect "/login"
+		end
+	end
 end
