@@ -7,17 +7,21 @@
 <% @all = Student.all %>
 <% array_of_sections = [] %>
 <% @all.each do |student| %>
-	<% if !array_of_sections.include?(student[:section]) && @user_id == student[:user_id] %>
+	<% if session[:user_id] == student[:user_id] %>
 		<% array_of_sections << student %>
 	<% end %>
 <% end %>
-<% array_of_sections = array_of_sections.sort %>
+<% array_of_sections = array_of_sections.sort_by { |obj| obj.section } %>
+<% array_of_sections = array_of_sections.uniq { |s| s.section } %>
+
 <% array_of_sections.each do |student| %>
 	<form action="/sections/<%=student[:section]%>" method="POST">
 		<input id="section" type="hidden" name="section" value="<%=student[:section]%>">
 		<input type="submit" value="Section: <%=student[:section]%>">
 	</form>
 	<br>
+
+
 <% end %>
 
 <form action="/sections" method="POST">
