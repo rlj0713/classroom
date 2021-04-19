@@ -15,12 +15,11 @@
 <% array_of_sections = array_of_sections.uniq { |s| s.section } %>
 
 <% array_of_sections.each do |student| %>
-	<form action="/sections/<%=student[:section]%>" method="POST">
-		<input id="section" type="hidden" name="section" value="<%=student[:section]%>">
-		<input type="submit" value="Section: <%=student[:section]%>">
-	</form>
-	<br>
-
+		<form action="/sections/<%=student[:section]%>" method="POST">
+			<input id="section" type="hidden" name="section" value="<%=student[:section]%>">
+			<input type="submit" value="Section: <%=student[:section]%>">
+		</form>
+		<br>
 
 <% end %>
 

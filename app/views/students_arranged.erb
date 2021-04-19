@@ -10,8 +10,6 @@
 
 
 <% number_of_students = current_section_of_students.length %>
-<% number_of_students %>
-<%# The number 4 below could be a param and therefore teachers could choose how large to make groups %>
 <% number_of_groups = number_of_students / 4 %>
 <% number_of_groups = number_of_groups.floor %>
 
@@ -53,8 +51,11 @@
 <% end %>
 
 <% final_group = remainder %>
-<% final_group = final_group.flatten %>
-<h2>Remainder Group <%= number_of_groups + 1 %>:</h2>
-<% final_group.each do |student| %>
-<%= student[:name] %><br>
+<% if final_group.length > 0 %>
+    <% final_group = final_group.flatten %>
+    <h2>Students who will succeed anywhere:</h2>
+    <p>Think about a group slightly larger or smaller</p>
+    <% final_group.each do |student| %>
+    <%= student[:name] %><br>
+    <% end %>
 <% end %>

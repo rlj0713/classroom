@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 	
 	post "/sections" do
 		@section = Student.create(:user_id => current_user[:id], :name => params[:name] = "John Doe", :section => params[:section], :score => params[:score] = 100)
-		
 		if !Student.all.includes(@section) && params[:section] != ""
 			@section.save
 		end
