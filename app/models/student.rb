@@ -1,3 +1,4 @@
 class Student < ActiveRecord::Base
-    belongs_to :user
+    validates :period_number, uniqueness: true
+    belongs_to :section
 end

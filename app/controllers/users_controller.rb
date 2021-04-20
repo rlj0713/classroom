@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 	end
 	
 	post "/sections" do
-		@section = Student.create(:user_id => current_user[:id], :name => params[:name] = "John Doe", :section => params[:section], :score => params[:score] = 100)
-		if !Student.all.includes(@section) && params[:section] != ""
+		@section = Section.new(:user_id => current_user[:id], :period_number => params[:period_number])
+		if @section.valid?
 			@section.save
 		end
 		erb :user

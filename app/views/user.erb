@@ -1,30 +1,25 @@
 
-<h2>Welcome <%= current_user.username %>! </h2>
-
 <h2>Your Sections:</h2>
 
 <%# This displays a list of sections that belong to the user %>
-<% @all = Student.all %>
+<% @all = Section.all %>
 <% array_of_sections = [] %>
-<% @all.each do |student| %>
-	<% if session[:user_id] == student[:user_id] %>
-		<% array_of_sections << student %>
+<% @all.each do |section| %>
+	<% if session[:user_id] == section[:user_id] %>
+		<% array_of_sections << section %>
 	<% end %>
 <% end %>
-<% array_of_sections = array_of_sections.sort_by { |obj| obj.section } %>
-<% array_of_sections = array_of_sections.uniq { |s| s.section } %>
+<% array_of_sections = array_of_sections.sort %>
 
-<% array_of_sections.each do |student| %>
-		<form action="/sections/<%=student[:section]%>" method="POST">
-			<input id="section" type="hidden" name="section" value="<%=student[:section]%>">
-			<input type="submit" value="Section: <%=student[:section]%>">
+<% array_of_sections.each do |section| %>
+		<form action="/sections/<%=section[:period_number]%>" method="POST">
+			<input id="section" type="hidden" name="section" value="<%=section[:period_number]%>">
+			<input type="submit" value="Section: <%=section[:period_number]%>">
 		</form>
 		<br>
 <% end %>
 
 <form action="/sections" method="POST">
-	<input id="section" type="integer" name="section" placeholder="Enter a number">
-	<input id="name" type="hidden" name="name" value="John Doe">
-	<input id="score" type="hidden" name="score" value="100">
+	<input id="period_number" type="integer" name="period_number" placeholder="Enter a number">
 	<input type="submit" value="Add a Section">
 </form>
