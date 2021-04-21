@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
 	post "/sections/:id" do
 		if logged_in?
-			@selected_section = params[:section]
+			session[:section_id] = params[:id]
 			erb :sections
 		else
 			redirect "/login"

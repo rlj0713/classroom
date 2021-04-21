@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
-    validates :period_number, uniqueness: true
+    validates :name, presence: true
+    validates :section_id, presence: true
     belongs_to :section
 end

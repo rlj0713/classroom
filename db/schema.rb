@@ -19,9 +19,8 @@ ActiveRecord::Schema.define(version: 20210420223637) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.integer "section"
     t.integer "score"
-    t.integer "user_id"
+    t.integer "section_id"
   end
 
   create_table "users", force: :cascade do |t|

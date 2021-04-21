@@ -1,16 +1,14 @@
-<h1>Section <%=params[:section]%></h1>
+<h1>Section <%=session[:section_id]%></h1>
 
 <h2>Students:</h2>
 
 <%# This displays a list of students on the page %>
-<% @section = params[:section] %>
-<% @section_id = params[:id].to_i %>
+<% @section_id = session[:section_id] %>
 <% @all = Student.all %>
 <% array_of_students = [] %>
 
-
 <% @all.each do |student| %>
-    <% if student[:section] == @section_id && student[:user_id] == session[:user_id] %>
+    <% if student[:section_id] == @section_id.to_i %>
         <% array_of_students << student %>
     <% end %>
 <% end %>
@@ -32,7 +30,7 @@
 
 <form action="/students" method="POST">
 	<input id="name" type="text" name="name" placeholder="Student Name">
-	<input id="section" type="hidden" name="section" value="<%=@section_id.to_i%>">
+	<input id="section" type="hidden" name="section" value="<%=params[:section]%>">
 	<input id="score" type="integer" name="score" placeholder="Student Score">
 	<input id="user_id" type="hidden" name="user_id" value="<%=current_user[:id]%>">
 	<input type="submit" value="Add Student">

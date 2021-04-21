@@ -9,7 +9,7 @@
 		<% array_of_sections << section %>
 	<% end %>
 <% end %>
-<% array_of_sections = array_of_sections.sort %>
+<% array_of_sections = array_of_sections.sort_by {|obj| obj.period_number } %>
 
 <% array_of_sections.each do |section| %>
 		<form action="/sections/<%=section[:period_number]%>" method="POST">

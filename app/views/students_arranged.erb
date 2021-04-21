@@ -3,7 +3,7 @@
 <% @all = Student.all %>
 <% current_section_of_students = [] %>
 <% @all.each do |student| %>
-    <% if student[:section] == @selected_section.to_i && student[:user_id] == session[:user_id] %>
+    <% if student[:section_id] == @selected_section.to_i %>
         <% current_section_of_students << student %>
     <% end %>
 <% end %>

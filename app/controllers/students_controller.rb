@@ -16,18 +16,15 @@ get '/students' do
 end
 
 post "/students" do
-  @student = Student.create(:user_id => current_user[:id], :name => params[:name], :section => params[:section].to_i, :score => params[:score])
+  @student = Student.new(:section_id => params[:section].to_i, :name => params[:name], :score => params[:score].to_i)
   
-  if !Student.all.includes(@student.name) && params[:section] != nil && params[:section] != ""
+  binding.pry
+  if @student.valid?
     @student.save
   end
 
-  if @student.name == "John Doe"
-    redirect "/sections"
-  else
-    @new_students_section = params[:section]
-    redirect "/sections/#{@new_students_section.to_i}"
-  end
+  @new_students_section = params[:section]
+  redirect "/sections/#{@new_students_section.to_i}"
 end
 
 get '/sections/:id/students_arranged' do
