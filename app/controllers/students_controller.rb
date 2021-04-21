@@ -16,14 +16,13 @@ get '/students' do
 end
 
 post "/students" do
-  @student = Student.new(:section_id => params[:section].to_i, :name => params[:name], :score => params[:score].to_i)
+  @student = Student.new(:section_id => session[:section_id].to_i, :name => params[:name], :score => params[:score].to_i, :user_id => session[:user_id].to_i)
   
-  binding.pry
   if @student.valid?
     @student.save
   end
-
-  @new_students_section = params[:section]
+  
+  @new_students_section = session[:section_id]
   redirect "/sections/#{@new_students_section.to_i}"
 end
 

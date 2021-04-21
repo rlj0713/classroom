@@ -13,14 +13,16 @@
 ActiveRecord::Schema.define(version: 20210420223637) do
 
   create_table "sections", force: :cascade do |t|
-    t.integer "period_number"
+    t.string "period_number"
     t.integer "user_id"
+    t.integer "student_id"
   end
 
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.integer "score"
     t.integer "section_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

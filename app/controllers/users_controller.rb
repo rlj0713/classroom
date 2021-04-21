@@ -12,9 +12,11 @@ class UsersController < ApplicationController
 	end
 	
 	post "/sections" do
-		@section = Section.new(:user_id => current_user[:id], :period_number => params[:period_number])
+		@section = Section.new(:user_id => current_user[:id], :period_number => params[:period_number].to_i)
 		if @section.valid?
 			@section.save
+		else
+			erb :failure
 		end
 		erb :user
 	end
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
 			@selected_student = params[:id]
 			@selected_student = Student.find_by_id(@selected_student)
 			@selected_student.delete
-			redirect "/sections/#{params[:section]}"
+			redirect "/sections/#{session[:section_id]}"
 		else
 			redirect "/login"
 		end
