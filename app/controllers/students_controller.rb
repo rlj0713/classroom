@@ -7,70 +7,34 @@ class StudentsController < ApplicationController
 # Add and update students from a form.
 # May need an edit to facilitate delete?
 
-get '/students' do
-  if logged_in?
-    erb :sections
-  else
-    redirect "/login"
+  get '/students' do
+    if logged_in?
+      erb :sections
+    else
+      redirect "/login"
+    end
   end
-end
 
-post "/students" do
-  @student = Student.new(:section_id => session[:section_id].to_i, :name => params[:name], :score => params[:score].to_i, :user_id => session[:user_id].to_i)
-  
-  if @student.valid?
-    @student.save
+  post "/students" do
+    @student = Student.new(:section_id => session[:section_id].to_i, :name => params[:name], :score => params[:score].to_i, :user_id => session[:user_id].to_i)
+    
+    if @student.valid?
+      @student.save
+    end
+    
+    @new_students_section = session[:section_id]
+    redirect "/sections/#{@new_students_section.to_i}"
   end
-  
-  @new_students_section = session[:section_id]
-  redirect "/sections/#{@new_students_section.to_i}"
-end
 
-get '/sections/:id/students_arranged' do
-  erb :students_arranged
-end
-
-post '/sections/:id/students_arranged' do
-  @selected_section = params[:id]
-  erb :students_arranged
-end
-
-post '/sections' do
-  if logged_in?
-    erb :sections
-  else
-    redirect "/login"
-  end
-end
-
-# post '/create_student' do
-#   @student = Student.create(:user_id => current_user[:id], :name => params[:name], :section => params[:section], :score => params[:score])
-#   if !Student.all.includes(@student.name)
-#     @student.save
-#   end
-#   erb :sections
-# end
-
-# # show
-# get "/articles/:id" do
-#   @article = Article.find(params[:id])
-#   erb :show
-# end
-
-# # edit
-# get "/articles/:id/edit" do
-#   @article = Article.find(params[:id])
-#   erb :edit
-# end
-
-# # update
-# patch "/articles/:id" do
-#   @article = Article.find(params[:id])
-#   @article.update(params[:article])
-#   redirect to "/articles/#{ @article.id }"
-# end
-
-
-
+  post "/delete_student" do
+		if logged_in?
+			@selected_student = params[:id]
+			@selected_student = Student.find_by_id(@selected_student)
+			@selected_student.delete
+			redirect "/sections/#{session[:section_id]}"
+		else
+			redirect "/login"
+		end
+	end
 
 end

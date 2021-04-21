@@ -7,6 +7,5 @@ end
 
 run ApplicationController
 use SessionsController
-use UsersController
 use StudentsController
-use NavbarController
+use SectionsController
