@@ -1,13 +1,6 @@
 <h1>Section <%= @selected_section %> Groups:</h1>
 
-<% @all = Student.all %>
-<% current_section_of_students = [] %>
-<% @all.each do |student| %>
-    <% if student[:section_id] == @selected_section.to_i %>
-        <% current_section_of_students << student %>
-    <% end %>
-<% end %>
-
+<% current_section_of_students = Student.where(:user_id => session[:user_id], :section_id => session[:section_id]) %>
 
 <% number_of_students = current_section_of_students.length %>
 <% number_of_groups = number_of_students / 4 %>
