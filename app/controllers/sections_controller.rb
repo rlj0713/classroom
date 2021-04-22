@@ -28,6 +28,8 @@ class SectionsController < ApplicationController
   post "/delete_sections" do
     if logged_in?
       @section = Section.where(:user_id => current_user[:id], :id => params[:section].to_i)
+      @students_in_section_to_delete = Student.where(:user_id => current_user[:id].to_i, :section_id => @section[0][:period_number].to_i)
+      @students_in_section_to_delete.each { |s| Student.delete(s) }
       Section.delete(@section)
       erb :user
     else
