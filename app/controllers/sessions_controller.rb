@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
 			user.save
 			session[:user_id] = user.id
 			redirect "/sections"
+		elsif !user.valid?
+			@reason = "a username that is blank."
+			erb :failure
 		else
 			@reason = "a username that is not unique."
 			erb :failure

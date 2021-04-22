@@ -17,6 +17,10 @@
 			<input id="id" name ="id" type="hidden" value="<%=student[:id]%>">
 			<input type="submit" value="Delete Student">
 		</form>
+		<form action="/edit_student" method="POST">
+			<input id="id" name ="id" type="hidden" value="<%=student[:id]%>">
+			<input type="submit" value="Edit Student">
+		</form>
 	</ul>
 <% end %>
 

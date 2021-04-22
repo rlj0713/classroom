@@ -20,6 +20,16 @@ class SectionsController < ApplicationController
     end
     erb :user
   end
+  
+  post "/delete_sections" do
+    if logged_in?
+      @section = Section.where(:user_id => current_user[:id], :id => params[:section].to_i)
+      Section.delete(@section)
+      erb :user
+    else
+      redirect "/login"
+    end
+  end
 
   get "/sections/:id" do
     if logged_in?

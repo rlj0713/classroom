@@ -37,4 +37,22 @@ class StudentsController < ApplicationController
 		end
 	end
 
+  post "/edit_student" do
+		if logged_in?
+			@selected_student = Student.find_by_id(params[:id])
+			erb :edit_student
+		else
+			redirect "/login"
+		end
+	end
+  
+  post "/patch_student" do
+    if logged_in?
+      Student.update(params[:id], :name => params[:name], :score => params[:score])
+      redirect "/sections/#{session[:section_id]}"
+    else
+      redirect "/login"
+    end
+  end
+  
 end

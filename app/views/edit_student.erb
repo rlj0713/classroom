@@ -1,0 +1,13 @@
+
+<h1>Student: <%=@selected_student.name%> - <%=@selected_student.score%></h1>
+
+<h2>New Information:</h2> 
+
+<form action="/patch_student" method="POST">
+	<input id="name" type="text" name="name" value="<%=@selected_student.name%>">
+	<input id="section" type="hidden" name="section" value="<%=session[:section_id]%>">
+	<input id="score" type="integer" name="score" value="<%=@selected_student.score%>">
+	<input id="user_id" type="hidden" name="user_id" value="<%=current_user[:id]%>">
+	<input id="id" type="hidden" name="id" value="<%=@selected_student[:id]%>">
+	<input type="submit" value="Update Student">
+</form>
