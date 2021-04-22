@@ -18,6 +18,10 @@ class SectionsController < ApplicationController
     else
       erb :failure
     end
+
+    if @section[:period_number] == "0"
+      Section.delete(@section)
+    end
     erb :user
   end
   
