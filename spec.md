@@ -13,13 +13,13 @@ Specs:
     In this web application, a student belongs to a user.
 - [x] Include user accounts with unique login attribute (username or email)
     This was one of the more challenging requirements.  At face value, creating a unique log-in was simple.  The tricky part was keeping things separate and avoiding security holes.
-- [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-- [ ] Ensure that users can't modify content created by other users
+- [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+- [x] Ensure that users can't modify content created by other users
     See comment above.
-- [ ] Include user input validations
+- [x] Include user input validations
 - [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
     When users log-in with incorrect passwords or try to sign-up with someone else's username, there is an error screen.
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code.
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code.
     I wrote this out, but unlike the previous project there is not as much that users need to do to clone this repo.
 
 Confirm
