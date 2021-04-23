@@ -28,4 +28,5 @@ Confirm
 - [x] You made the changes in a commit that relate to the commit message
 - [x] You don't include changes in a commit that aren't related to the commit message
 
+6 minute video tour of this app: https://youtu.be/a9zN86zyQlI
 30 minute coding think aloud: https://youtu.be/AtaPLO8An0c
