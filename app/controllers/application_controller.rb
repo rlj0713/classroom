@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
 		if logged_in?
 			redirect "/sections"
 		else
-			erb :welcome
+			erb :index
 		end
   	end
 

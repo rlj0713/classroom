@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
 
 	get "/logout" do
 		session.clear
-		erb :welcome
+		erb :index
 	end
 
 end
