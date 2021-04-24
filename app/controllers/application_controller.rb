@@ -25,7 +25,6 @@ class ApplicationController < Sinatra::Base
 			User.find_by(id: session[:user_id])
 		end
 
-		# Returns true if the user doesn't already exists in the db. - For Sign-Up redundancy problem
 		def is_unique
 			User.find_by_username(params[:username]) == nil
 		end
@@ -33,7 +32,6 @@ class ApplicationController < Sinatra::Base
 		def is_first_user
 			User.all == []
 		end
-
 	end
 
 end

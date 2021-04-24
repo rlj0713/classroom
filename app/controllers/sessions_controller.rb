@@ -1,7 +1,5 @@
 require './config/environment'
 
-# Handles all sign-in / sign-up functionality
-
 class SessionsController < ApplicationController
 
   	get "/signup" do

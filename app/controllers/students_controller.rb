@@ -1,11 +1,6 @@
 require './config/environment'
 
 class StudentsController < ApplicationController
-# Should only have create (post route), update (patch route), and delete (delete route)
-# No index or forms needed
-# Display a lsit of students from the usesr show page
-# Add and update students from a form.
-# May need an edit to facilitate delete?
 
   get '/students' do
     if logged_in?

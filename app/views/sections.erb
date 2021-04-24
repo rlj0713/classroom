@@ -1,10 +1,7 @@
 
 <h2>Your Sections:</h2>
 
-<%# This displays a list of sections that belong to the user %>
-
 <% array_of_sections = Section.where(:user_id => session[:user_id]) %>
-
 <% array_of_sections = array_of_sections.sort_by {|obj| obj.period_number } %>
 
 <% array_of_sections.each do |section| %>

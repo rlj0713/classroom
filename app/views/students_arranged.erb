@@ -1,3 +1,4 @@
+
 <h1>Section <%= @selected_section %> Groups:</h1>
 
 <% current_section_of_students = Student.where(:user_id => session[:user_id], :section_id => session[:section_id]) %>
@@ -6,14 +7,12 @@
 <% number_of_groups = number_of_students / 4 %>
 <% number_of_groups = number_of_groups.floor %>
 
-
 <% high = []  %>
 <% m_high = []  %>
 <% m_low = []  %>
 <% low = []  %>
 <% remainder = []  %>
 <% counter = 1  %>
-
 
 <% current_section_of_students = current_section_of_students.sort_by { |obj| obj.score } %>
 <% current_section_of_students.each do |student| %>
@@ -44,13 +43,13 @@
 <% end %>
 
 <% final_group = remainder %>
-<% if final_group.length > 0 %>
-    <% final_group = final_group.flatten %>
-    <h2>Students who will succeed anywhere:</h2>
-    <p>Think about a group slightly larger or smaller</p>
-    <% final_group.each do |student| %>
-    <%= student[:name] %><br>
-    <% end %>
-<% else %>
-    <h2>You don't have any students yet.</h2>
+    <% if final_group.length > 0 %>
+        <% final_group = final_group.flatten %>
+        <h2>Students who will succeed anywhere:</h2>
+        <p>Think about a group slightly larger or smaller</p>
+        <% final_group.each do |student| %>
+        <%= student[:name] %><br>
+        <% end %>
+    <% else %>
+        <h2>You don't have any students yet.</h2>
 <% end %>
