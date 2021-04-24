@@ -9,7 +9,7 @@ class StudentsController < ApplicationController
 
   get '/students' do
     if logged_in?
-      erb :sections
+      erb :students
     else
       redirect "/login"
     end

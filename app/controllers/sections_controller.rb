@@ -5,7 +5,7 @@ class SectionsController < ApplicationController
   get "/sections" do
     if logged_in?
       @user_id = session[:user_id]
-      erb :user
+      erb :sections
     else
       redirect "/login"
     end
@@ -22,7 +22,7 @@ class SectionsController < ApplicationController
     if @section[:period_number] == "0"
       Section.delete(@section)
     end
-    erb :user
+    erb :sections
   end
   
   post "/delete_sections" do
@@ -31,7 +31,7 @@ class SectionsController < ApplicationController
       @students_in_section_to_delete = Student.where(:user_id => current_user[:id].to_i, :section_id => @section[0][:period_number].to_i)
       @students_in_section_to_delete.each { |s| Student.delete(s) }
       Section.delete(@section)
-      erb :user
+      erb :sections
     else
       redirect "/login"
     end
@@ -41,7 +41,7 @@ class SectionsController < ApplicationController
     if logged_in?
       @user_id = current_user[:id]
       @selected_section = params[:id]
-      erb :sections
+      erb :students
     else
       redirect "/login"
     end
@@ -50,7 +50,7 @@ class SectionsController < ApplicationController
   post "/sections/:id" do
     if logged_in?
       session[:section_id] = params[:id]
-      erb :sections
+      erb :students
     else
       redirect "/login"
     end

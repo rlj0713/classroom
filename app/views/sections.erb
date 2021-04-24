@@ -1,39 +1,26 @@
-<h1>Section <%=session[:section_id]%></h1>
 
-<h2>Students:</h2>
+<h2>Your Sections:</h2>
 
-<%# This displays a list of students on the page %>
-<% @section_id = session[:section_id] %>
-<% @all = Student.all %>
-<% array_of_students = [] %>
+<%# This displays a list of sections that belong to the user %>
 
+<% array_of_sections = Section.where(:user_id => session[:user_id]) %>
 
-<% array_of_students = Student.where(:user_id => session[:user_id].to_i, :section_id => session[:section_id]) %>
+<% array_of_sections = array_of_sections.sort_by {|obj| obj.period_number } %>
 
-<% array_of_students = array_of_students.sort_by {|obj| obj.score} %>
-<% array_of_students.each do |student| %>    
-    <ul> <%= student[:name] %> - <%= student[:score] %>
-		<form action="/delete_student" method="POST">
-			<input id="id" name ="id" type="hidden" value="<%=student[:id]%>">
-			<input type="submit" value="Delete Student">
+<% array_of_sections.each do |section| %>
+		<% @sectionid = section.id %>
+		<form action="/sections/<%=section[:period_number]%>" method="POST">
+			<input id="section" type="hidden" name="section" value="<%=section[:period_number]%>">
+			<input type="submit" value="Section: <%=section[:period_number]%>">
+		</form><span>
+		<form action="/delete_sections" method="POST">
+			<input id="section" name="section" type="hidden" value="<%=@sectionid%>">
+			<input type="submit" value="Remove Section">
 		</form>
-		<form action="/edit_student" method="POST">
-			<input id="id" name ="id" type="hidden" value="<%=student[:id]%>">
-			<input type="submit" value="Edit Student">
-		</form>
-	</ul>
+		<br>
 <% end %>
 
-<form action="/sections/<%=@section_id%>/students_arranged" method="POST">
-	<input id="section" type="hidden" value="<%=@section_id.to_i%>">
-	<input type="submit" value="Create Groups!">
+<form action="/sections" method="POST">
+	<input id="period_number" type="integer" name="period_number" placeholder="Enter a number">
+	<input type="submit" value="Add a Section">
 </form>
-
-<form action="/students" method="POST">
-	<input id="name" type="text" name="name" placeholder="Student Name">
-	<input id="section" type="hidden" name="section" value="<%=session[:section_id]%>">
-	<input id="score" type="integer" name="score" placeholder="Student Score">
-	<input id="user_id" type="hidden" name="user_id" value="<%=current_user[:id]%>">
-	<input type="submit" value="Add Student">
-</form>
-

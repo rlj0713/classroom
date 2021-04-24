@@ -1,0 +1,39 @@
+<h1>Section <%=session[:section_id]%></h1>
+
+<h2>Students:</h2>
+
+<%# This displays a list of students on the page %>
+<% @section_id = session[:section_id] %>
+<% @all = Student.all %>
+<% array_of_students = [] %>
+
+
+<% array_of_students = Student.where(:user_id => session[:user_id].to_i, :section_id => session[:section_id]) %>
+
+<% array_of_students = array_of_students.sort_by {|obj| obj.score} %>
+<% array_of_students.each do |student| %>    
+    <ul> <%= student[:name] %> - <%= student[:score] %>
+		<form action="/delete_student" method="POST">
+			<input id="id" name ="id" type="hidden" value="<%=student[:id]%>">
+			<input type="submit" value="Delete Student">
+		</form>
+		<form action="/edit_student" method="POST">
+			<input id="id" name ="id" type="hidden" value="<%=student[:id]%>">
+			<input type="submit" value="Edit Student">
+		</form>
+	</ul>
+<% end %>
+
+<form action="/sections/<%=@section_id%>/students_arranged" method="POST">
+	<input id="section" type="hidden" value="<%=@section_id.to_i%>">
+	<input type="submit" value="Create Groups!">
+</form>
+
+<form action="/students" method="POST">
+	<input id="name" type="text" name="name" placeholder="Student Name">
+	<input id="section" type="hidden" name="section" value="<%=session[:section_id]%>">
+	<input id="score" type="integer" name="score" placeholder="Student Score">
+	<input id="user_id" type="hidden" name="user_id" value="<%=current_user[:id]%>">
+	<input type="submit" value="Add Student">
+</form>
+
