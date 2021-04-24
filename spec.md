@@ -29,4 +29,7 @@ Confirm
 - [x] You don't include changes in a commit that aren't related to the commit message
 
 6 minute video tour of this app: https://youtu.be/a9zN86zyQlI
+
+Blog: https://rlj0713.medium.com/how-do-databases-really-work-in-a-web-application-47f34770c065
+
 30 minute coding think aloud: https://youtu.be/AtaPLO8An0c

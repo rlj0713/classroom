@@ -1,7 +1,7 @@
 
 # Classroom
 
-Classroom instructors can now quickly and effectively create optimal groupings informed by Elena Kagan's research.  Add students to your roster and make data informed groupings with the click of a button.
+Classroom instructors can now quickly and effectively create optimal groupings informed by Dr. Spencer Kagan's research.  Add students to your roster and make data informed groupings with the click of a button.
 
 ## Developers
 
