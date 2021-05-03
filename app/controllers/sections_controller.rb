@@ -4,7 +4,6 @@ class SectionsController < ApplicationController
 
   get "/sections" do
     if logged_in?
-      @user_id = session[:user_id]
       erb :sections
     else
       redirect "/login"
