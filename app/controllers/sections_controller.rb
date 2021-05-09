@@ -26,16 +26,6 @@ class SectionsController < ApplicationController
     redirect "/sections"
   end
   
-  delete "/sections/:id" do
-    if logged_in?
-      @section = Section.find_by_id(params[:id])
-      Section.delete(@section)
-      redirect "/sections"
-    else
-      redirect "/login"
-    end
-  end
-
   get "/sections/:id" do
     if logged_in?
       @section = Section.find_by_id(params[:id].to_i)
@@ -50,6 +40,16 @@ class SectionsController < ApplicationController
     if logged_in?
       session[:section_id] = params[:id]
       erb :students
+    else
+      redirect "/login"
+    end
+  end
+
+  delete "/sections/:id" do
+    if logged_in?
+      @section = Section.find_by_id(params[:id])
+      Section.delete(@section)
+      redirect "/sections"
     else
       redirect "/login"
     end
