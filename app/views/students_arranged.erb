@@ -1,7 +1,7 @@
 
 <h1>Section <%= @selected_section %> Groups:</h1>
 
-<% current_section_of_students = Student.where(:user_id => session[:user_id], :section_id => session[:section_id]) %>
+<% current_section_of_students = Student.where(:section_id => session[:section_id].to_i) %>
 
 <% number_of_students = current_section_of_students.length %>
 <% number_of_groups = number_of_students / 4 %>
@@ -52,4 +52,4 @@
         <% end %>
     <% else %>
         <h2>You don't have any students yet.</h2>
-<% end %>
+    <% end %>

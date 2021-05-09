@@ -1,17 +1,12 @@
 
 <h2>Your Sections:</h2>
 
-<% array_of_sections = Section.where(:user_id => session[:user_id]) %>
-<% array_of_sections = array_of_sections.sort_by {|obj| obj.period_number } %>
+<% sorted_sections = @user.sections.sort_by {|sec| sec.period_number.to_i } %>
 
-<% array_of_sections.each do |section| %>
-		<% @sectionid = section.id %>
-		<form action="/sections/<%=section[:period_number]%>" method="POST">
-			<input id="section" type="hidden" name="section" value="<%=section[:period_number]%>">
-			<input type="submit" value="Section: <%=section[:period_number]%>">
-		</form><span>
-		<form action="/delete_sections" method="POST">
-			<input id="section" name="section" type="hidden" value="<%=@sectionid%>">
+<% sorted_sections.each do |section| %>
+		<a href="/sections/<%=section.id%>">Section <%=section.period_number.to_i%></a>
+		<form action="/sections/<%=section.id%>" method="POST">
+			<input name="_method" type="hidden" value="delete">
 			<input type="submit" value="Remove Section">
 		</form>
 		<br>
