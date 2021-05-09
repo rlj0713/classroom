@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			redirect "/sections"
 		elsif !user.valid?
+			# avoid rendering where a new route can do the job (separation of concerns)
 			@reason = "a username that is blank."
 			erb :failure
 		else
@@ -28,7 +29,7 @@ class SessionsController < ApplicationController
 	
 	post "/login" do
 		user = User.find_by(:username => params[:username])
-
+		
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
 			redirect "/sections"
