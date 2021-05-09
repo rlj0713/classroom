@@ -21,7 +21,6 @@ class StudentsController < ApplicationController
   end
 
   get "/students/:id" do
-    @selected_student = Student.find_by_id(params[:id])
     erb :edit_student
   end
   

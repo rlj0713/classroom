@@ -2,6 +2,7 @@
 <h1>Section <%=@section[:period_number]%></h1>
 <h2>Students:</h2>
 
+
 <% sorted_students = @section.students.sort_by { |s| s.score } %>    
 
 <% sorted_students.each do |student| %>    
