@@ -2,7 +2,9 @@
 <h1>Section <%=@section[:period_number]%></h1>
 <h2>Students:</h2>
 
-<% @section.students.each do |student| %>    
+<% sorted_students = @section.students.sort_by { |s| s.score } %>    
+
+<% sorted_students.each do |student| %>    
     <ul> <%= student[:name] %> - <%= student[:score] %>
 		<form action="/students/<%=student[:id].to_i%>" method="POST">
 			<input id="hidden" type="hidden" name="_method" value="delete">
