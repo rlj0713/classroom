@@ -18,7 +18,7 @@
 	</ul>
 <% end %>
 
-<form action="/sections/<%=@section.id%>/students_arranged" method="POST">
+<form action="/sections/<%=@section.id%>/students_arranged" method="GET">
 	<input id="section" type="hidden" value="<%=@section_id.to_i%>">
 	<input type="submit" value="Create Groups!">
 </form>

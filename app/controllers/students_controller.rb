@@ -42,9 +42,7 @@ class StudentsController < ApplicationController
 
   delete "/students/:id" do
 		if logged_in?
-			@selected_student = params[:id]
-			@selected_student = Student.find_by_id(@selected_student)
-			@selected_student.delete
+			Student.find_by_id(params[:id]).delete
 			redirect "/sections/#{session[:section_id]}"
 		else
 			redirect "/login"

@@ -14,12 +14,11 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			redirect "/sections"
 		elsif !user.valid?
-			# avoid rendering where a new route can do the job (separation of concerns)
 			@reason = "a username that is blank."
-			erb :failure
+			redirect "/failure"
 		else
 			@reason = "a username that is not unique."
-			erb :failure
+			redirect "/failure"
 		end
 	end
 	
@@ -35,7 +34,7 @@ class SessionsController < ApplicationController
 			redirect "/sections"
 		else
 			@reason = "a password that doesn't match a user in our system."
-			erb :failure
+			redirect "/failure"
 		end
 	end
 
@@ -45,7 +44,7 @@ class SessionsController < ApplicationController
 
 	get "/logout" do
 		session.clear
-		erb :index
+		redirect "/"
 	end
 
 end

@@ -16,7 +16,7 @@ class SectionsController < ApplicationController
     if @section.valid?
       @section.save
     else
-      erb :failure
+      redirect "/failure"
     end
 
     if @section[:period_number] == "0"
@@ -56,11 +56,6 @@ class SectionsController < ApplicationController
   end
 
   get '/sections/:id/students_arranged' do
-    erb :students_arranged
-  end
-
-  post '/sections/:id/students_arranged' do
-    @selected_section = params[:id]
     erb :students_arranged
   end
 
