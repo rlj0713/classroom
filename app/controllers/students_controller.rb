@@ -21,12 +21,8 @@ class StudentsController < ApplicationController
   end
 
   get "/students/:id" do
-    erb :edit_student
-  end
-  
-  post "/students/:id" do
     @selected_student = Student.find_by_id(params[:id])
-    redirect "/students/#{@selected_student.id}"
+    erb :edit_student
   end
 
   patch "/students/:id" do

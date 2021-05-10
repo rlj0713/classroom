@@ -12,7 +12,7 @@
 			<input id="id" name ="id" type="hidden" value="<%=student[:id].to_i%>">
 			<input type="submit" value="Delete Student">
 		</form>
-		<form action="/students/<%=student[:id].to_i%>" method="POST">
+		<form action="/students/<%=student[:id].to_i%>" method="GET">
 			<input id="id" name ="id" type="hidden" value="<%=student[:id].to_i%>">
 			<input type="submit" value="Edit Student">
 		</form>
