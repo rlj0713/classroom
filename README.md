@@ -1,6 +1,8 @@
 
 # Classroom
 
+Walk Through of Classroom - https://youtu.be/a9zN86zyQlI
+
 Classroom instructors can now quickly and effectively create optimal groupings informed by Dr. Spencer Kagan's research.  Add students to your roster and make data informed groupings with the click of a button.
 
 ## Developers
